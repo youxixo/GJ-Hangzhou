@@ -40,7 +40,7 @@ public abstract class eliminate : MonoBehaviour
                 else
                 {
                     Debug.Log("标签不匹配: " + selectedObject1.tag + " != " + selectedObject2.tag);
-                    SetOutlineThickness(selectedObject1, 0f); // 恢复默认厚度
+                    SetOutlineThickness(selectedObject1, 1f); // 恢复默认厚度
                     selectedObject1 = null;
                 }
 
@@ -84,11 +84,18 @@ public abstract class eliminate : MonoBehaviour
 
     private void GenerateLargeBookPrefab()
     {
-        if (largeBookPrefab != null)
+        if (GameObject.FindWithTag("书") == null) // 检查是否没有带有“书”标签的对象
         {
-            Vector3 spawnPosition = new Vector3(64.4000015f,-3.9000001f,0.116799332f); // 设置生成位置，根据需要调整
-            Instantiate(largeBookPrefab, spawnPosition, Quaternion.identity);
-            Debug.Log("生成了 largeBookPrefab");
+            if (largeBookPrefab != null)
+            {
+                Vector3 spawnPosition = new Vector3(0, 0, 0); // 设置生成位置，根据需要调整
+                Instantiate(largeBookPrefab, spawnPosition, Quaternion.identity);
+                Debug.Log("生成了 largeBookPrefab");
+            }
+        }
+        else
+        {
+            Debug.Log("场景中已有带有‘书’标签的对象，不生成新的预制体");
         }
     }
 }
