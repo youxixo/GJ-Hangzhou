@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 260250201}
   m_Layer: 0
   m_Name: "\u98CE\u6247"
-  m_TagString: Untagged
+  m_TagString: Fan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1668,6 +1668,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &446302188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446302189}
+  - component: {fileID: 446302190}
+  m_Layer: 0
+  m_Name: CloudManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446302189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446302188}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1275102590}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446302190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446302188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b679b076d2a2f0a4c8366b017d657eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudMover: {fileID: 1882759435}
 --- !u!1 &520320611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,6 +3364,8 @@ Transform:
   - {fileID: 1217775323}
   - {fileID: 231257720}
   - {fileID: 1050696380}
+  - {fileID: 446302189}
+  - {fileID: 1882759434}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305217387
@@ -3669,7 +3716,9 @@ GameObject:
   - component: {fileID: 1374948558}
   - component: {fileID: 1374948557}
   - component: {fileID: 1374948560}
+  - component: {fileID: 1374948563}
   - component: {fileID: 1374948561}
+  - component: {fileID: 1374948562}
   m_Layer: 0
   m_Name: "\u4E66_0 (1)"
   m_TagString: "\u4E66"
@@ -3802,6 +3851,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   largeBookPrefab: {fileID: 7229487371935401524, guid: cfc101f99b3782b4a9ba1fa11229a543, type: 3}
+--- !u!114 &1374948562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374948556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd469c5416fbd8d4ab87141dff3ed101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bed: {fileID: 1800804081}
+--- !u!50 &1374948563
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374948556}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.5
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &1377869384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,6 +4451,7 @@ GameObject:
   - component: {fileID: 1703709559}
   - component: {fileID: 1703709560}
   - component: {fileID: 1703709561}
+  - component: {fileID: 1703709562}
   m_Layer: 0
   m_Name: "\u7A97_0"
   m_TagString: Windows
@@ -4471,6 +4561,19 @@ CircleCollider2D:
   m_Offset: {x: 0.00000071525574, y: 0.00000011920929}
   serializedVersion: 2
   m_Radius: 2.0699997
+--- !u!114 &1703709562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703709558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8111c76e333a41499ed4e3bc4c06639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  largeBookPrefab: {fileID: 0}
 --- !u!1 &1739591629
 GameObject:
   m_ObjectHideFlags: 0
@@ -4833,8 +4936,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1882759434}
   - component: {fileID: 1882759433}
+  - component: {fileID: 1882759435}
   m_Layer: 0
-  m_Name: IMG_3764_0
+  m_Name: "\u4E91"
   m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4900,13 +5004,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882759432}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.745018, y: 7.8245735, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -333.23355, y: 11.121923, z: 0.11679933}
   m_LocalScale: {x: 2.3704946, y: 2.5036752, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1275102590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882759435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882759432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa49894dca2ff7438e7a97be8f9dee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fan: {fileID: 260250200}
+  moveSpeed: 100
+  shrinkSpeed: 0.1
+  initialScale: {x: 0, y: 0, z: 0}
+  finalScale: {x: 0, y: 0, z: 0}
+  floatAmplitude: {x: 0, y: 0.1, z: 0}
+  floatSpeed: 1
 --- !u!1 &1925869267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,6 +5041,7 @@ GameObject:
   - component: {fileID: 1925869268}
   - component: {fileID: 1925869269}
   - component: {fileID: 1925869270}
+  - component: {fileID: 1925869271}
   m_Layer: 0
   m_Name: "\u7A97_0 (1)"
   m_TagString: Windows
@@ -5027,6 +5151,19 @@ CircleCollider2D:
   m_Offset: {x: 0.00000047683716, y: 0.00000011920929}
   serializedVersion: 2
   m_Radius: 2.0699997
+--- !u!114 &1925869271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925869267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2f6fc7e3b0d054fbafb0a4f3d3dbb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  largeBookPrefab: {fileID: 0}
 --- !u!1 &1938496808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,4 +5601,3 @@ SceneRoots:
   - {fileID: 1275102590}
   - {fileID: 955118847}
   - {fileID: 1094414}
-  - {fileID: 1882759434}

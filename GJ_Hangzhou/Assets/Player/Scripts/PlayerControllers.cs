@@ -46,13 +46,11 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
-                if (!wasGrounded)
+                if (!wasGrounded)   
                     OnLandEvent.Invoke();
             }
         }
-
-        // Debug log to check the grounded state
-        Debug.Log("Grounded: " + m_Grounded);
+        
     }
 
     public bool Grounded
