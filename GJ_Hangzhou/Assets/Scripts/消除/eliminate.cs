@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class eliminate : MonoBehaviour
 {
@@ -100,9 +101,29 @@ public abstract class eliminate : MonoBehaviour
     {
         if (largeBookPrefab != null)
         {
-            Vector3 spawnPosition = new Vector3(64.4000015f,-3.9000001f,0.116799332f); // 设置生成位置，根据需要调整
-            Instantiate(largeBookPrefab, spawnPosition, Quaternion.identity);
+            Vector3 spawnPosition = new Vector3(64.4000015f, -3.9000001f, 0.116799332f); // 设置生成位置，根据需要调整
+            Quaternion spawnRotation = Quaternion.Euler(0, 0, 270); 
+            GameObject largeBook = Instantiate(largeBookPrefab, spawnPosition, spawnRotation);
             Debug.Log("生成了 largeBookPrefab");
+
+            // 启动协程延迟删除对象的Collider
+            StartCoroutine(RemoveCollidersAfterDelay(largeBook, 30f));
         }
+    }
+
+    private IEnumerator RemoveCollidersAfterDelay(GameObject obj, float delay)
+    {
+        Debug.Log("RemoveCollidersAfterDelay started for " + obj.name);
+        yield return new WaitForSeconds(delay);
+        
+        // 获取并删除所有 Collider 组件
+        Collider2D[] colliders2D = obj.GetComponents<Collider2D>();
+
+        foreach (var collider in colliders2D)
+        {
+            Destroy(collider);
+        }
+
+        Debug.Log("删除了 largeBookPrefab 的所有 Colliders");
     }
 }
