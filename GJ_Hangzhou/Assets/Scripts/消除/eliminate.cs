@@ -8,6 +8,13 @@ public abstract class eliminate : MonoBehaviour
     private bool playerInRange = false;
     public GameObject largeBookPrefab; // 预制体
 
+    private CloudManager cloudManager;
+
+    void Start()
+    {
+        cloudManager = FindObjectOfType<CloudManager>();
+    }
+
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.F))
@@ -36,6 +43,13 @@ public abstract class eliminate : MonoBehaviour
                     Destroy(selectedObject1);
                     Destroy(selectedObject2);
                     GenerateLargeBookPrefab();
+
+                    // 启动云朵移动
+                    if (selectedObject1.CompareTag("Windows") && selectedObject2.CompareTag("Windows") && cloudManager != null)
+                    {
+                        Debug.Log("eliminate: Windows matched, calling WindowDestroyed");
+                        cloudManager.WindowDestroyed();
+                    }
                 }
                 else
                 {
