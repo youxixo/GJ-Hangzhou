@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - "\u6905\u5B50"
   - "\u4E66"
+  - Cloud
+  - Windows
   layers:
   - Default
   - TransparentFX
