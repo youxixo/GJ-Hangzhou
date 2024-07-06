@@ -5,55 +5,79 @@ public abstract class eliminate : MonoBehaviour
     public static GameObject selectedObject1 = null;
     public static GameObject selectedObject2 = null;
 
-    private void OnMouseDown()
+    private bool playerInRange = false;
+
+    void Update()
     {
-        if (selectedObject1 == null)
+        if (playerInRange && Input.GetKeyDown(KeyCode.F))
         {
-            selectedObject1 = this.gameObject;
-            Debug.Log("获取1");
-            HighlightObject(selectedObject1);
-        }
-        else if (selectedObject2 == null)
-        {
-            selectedObject2 = this.gameObject;
-            HighlightObject(selectedObject2);
-
-            if (selectedObject1 == selectedObject2)
+            if (selectedObject1 == null)
             {
-                selectedObject2 = null; // Reset if the same object is selected twice
-                return;
+                selectedObject1 = this.gameObject;
+                Debug.Log("获取1: " + selectedObject1.name);
+                SetOutlineThickness(selectedObject1, 15f);
             }
-
-            if (selectedObject1.CompareTag(selectedObject2.tag))
+            else if (selectedObject2 == null)
             {
-                Destroy(selectedObject1);
-                Destroy(selectedObject2);
-            }
-            else
-            {
-                RemoveHighlight(selectedObject1);
-                selectedObject1 = null;
-            }
+                selectedObject2 = this.gameObject;
+                Debug.Log("获取2: " + selectedObject2.name);
+                SetOutlineThickness(selectedObject2, 15f);
 
-            selectedObject2 = null;
+                if (selectedObject1 == selectedObject2)
+                {
+                    selectedObject2 = null; // Reset if the same object is selected twice
+                    return;
+                }
+
+                if (selectedObject1.CompareTag(selectedObject2.tag))
+                {
+                    Debug.Log("标签匹配: " + selectedObject1.tag);
+                    Destroy(selectedObject1);
+                    Destroy(selectedObject2);
+                }
+                else
+                {
+                    Debug.Log("标签不匹配: " + selectedObject1.tag + " != " + selectedObject2.tag);
+                    SetOutlineThickness(selectedObject1, 0f); // 恢复默认厚度
+                    selectedObject1 = null;
+                }
+
+                selectedObject2 = null;
+            }
         }
     }
 
-    private void HighlightObject(GameObject obj)
+    private void SetOutlineThickness(GameObject obj, float thickness)
     {
-        SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+        Renderer renderer = obj.GetComponent<Renderer>();
         if (renderer != null)
         {
-            renderer.color = Color.yellow; // 改变颜色以示高亮
+            foreach (Material mat in renderer.materials)
+            {
+                if (mat.HasProperty("_Thickness"))
+                {
+                    mat.SetFloat("_Thickness", thickness);
+                }
+            }
         }
     }
 
-    private void RemoveHighlight(GameObject obj)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
-        if (renderer != null)
+        if (other.CompareTag("Player"))
         {
-            renderer.color = Color.white; // 恢复原始颜色
+            playerInRange = true;
+            Debug.Log("Player entered the range of " + gameObject.name);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            Debug.Log("Player exited the range of " + gameObject.name);
         }
     }
 }
+
