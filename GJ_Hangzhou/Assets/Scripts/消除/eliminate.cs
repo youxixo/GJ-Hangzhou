@@ -6,6 +6,7 @@ public abstract class eliminate : MonoBehaviour
     public static GameObject selectedObject2 = null;
 
     private bool playerInRange = false;
+    public GameObject largeBookPrefab; // 预制体
 
     void Update()
     {
@@ -34,6 +35,7 @@ public abstract class eliminate : MonoBehaviour
                     Debug.Log("标签匹配: " + selectedObject1.tag);
                     Destroy(selectedObject1);
                     Destroy(selectedObject2);
+                    GenerateLargeBookPrefab();
                 }
                 else
                 {
@@ -79,5 +81,14 @@ public abstract class eliminate : MonoBehaviour
             Debug.Log("Player exited the range of " + gameObject.name);
         }
     }
-}
 
+    private void GenerateLargeBookPrefab()
+    {
+        if (largeBookPrefab != null)
+        {
+            Vector3 spawnPosition = new Vector3(64.4000015f,-3.9000001f,0.116799332f); // 设置生成位置，根据需要调整
+            Instantiate(largeBookPrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("生成了 largeBookPrefab");
+        }
+    }
+}
