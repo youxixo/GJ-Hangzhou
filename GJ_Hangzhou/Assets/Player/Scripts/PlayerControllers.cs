@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -55,11 +54,14 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
+	public bool Grounded
+	{
+		get { return m_Grounded; }
+	}
 
 	public void Move(float move, bool jump)
 	{
-
-		//only control the player if grounded or airControl is turned on
+		// Only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
 			// Move the character by finding the target velocity
@@ -88,7 +90,6 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
-
 
 	private void Flip()
 	{
