@@ -101,7 +101,7 @@ public abstract class eliminate : MonoBehaviour
     {
         if (largeBookPrefab != null)
         {
-            Vector3 spawnPosition = new Vector3(64.4000015f, -3.9000001f, 0.116799332f); // 设置生成位置，根据需要调整
+            Vector3 spawnPosition = new Vector3(67.8000031f,-3.9000001f,0.116799332f); // 设置生成位置，根据需要调整
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 270); 
             GameObject largeBook = Instantiate(largeBookPrefab, spawnPosition, spawnRotation);
             Debug.Log("生成了 largeBookPrefab");
